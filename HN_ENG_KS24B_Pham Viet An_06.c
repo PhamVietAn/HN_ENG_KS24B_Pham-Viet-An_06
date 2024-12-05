@@ -1,10 +1,8 @@
 #include <stdio.h>
 
 int main(){
-    int m=0, length, index, value, choice;
-    int arr[100];
-
-    do{
+    int m=0, length=0, index, value, choice, temp, count, del_Index;
+    int arr[100], secArr[100];
         printf("\n  MENU\n\n");
         printf("1. Nhap so phan tu va gia tri cho mang\n");
         printf("2. In ra ca phan tu trong mang\n");
@@ -17,8 +15,9 @@ int main(){
         printf("9. Sap xep mang, so le dung truoc so chan dung sau\n");
         printf("10. Kiem tra xem mang co phai mang tang dan khong\n");
         printf("11. Thoat\n");
+    do{ 
         printf("\nLua chon cua ban: ");
-        scanf("%d", choice);
+        scanf("%d", &choice);
 
         switch (choice){
         case 1:
@@ -112,6 +111,43 @@ int main(){
             printf("%d ",arr[i]);
         }
         break;
+
+        case 8:
+            count=0;
+            printf("\nnhap vao gia tri can tim kiem: ");
+            scanf("%d",&value);
+            for(int i=0;i<10; i++){
+                if(arr[i]==value){
+                secArr[count]=i;
+                count++;
+                }
+            }
+            if(count>0){
+                for(int i=0; i<count; i++){
+                    printf("vi tri cua phan tu %d trong mang: ",value);
+                    printf("%d \n",secArr[i]);
+                }
+            }else{
+                printf("khong tim thay gia tri\n");
+            }
+            break;
+
+        case 9:
+            printf("mang sau sap xep: ");
+            for(int i=0; i<length; i++){
+                for(int j=0; j<length-i-1; j++){
+                    if(arr[j]%2!=0){
+                        temp=arr[j];
+                        arr[j]=arr[j+1];
+                        arr[j+1]=temp;
+                    }
+                }
+
+            }
+            for(int i=0; i<length; i++){
+                printf("%d ",arr[i]);
+            }
+            break;
         default:
             break;
         }
